@@ -62,7 +62,13 @@ async def startup_event() -> None:
 
     # Get configuration from environment
     skills_dir = os.getenv("SKILLS_DIR", "skills/")
-    file_store_dir = os.getenv("FILE_STORE_DIR", "data/files/")
+
+    # Prefer /tmp on serverless platforms (e.g., Vercel) to avoid read-only filesystem issues.
+    default_files_dir = "/tmp/files/"
+    if not os.getenv("FILE_STORE_DIR") and not os.getenv("VERCEL"):
+        default_files_dir = "data/files/"
+
+    file_store_dir = os.getenv("FILE_STORE_DIR", default_files_dir)
 
     logger.info("Initializing SkillsLike Agent API")
 
