@@ -67,14 +67,15 @@ class ImageGenExecutor(BaseExecutor):
             image_size,
         )
 
-        # Get API credentials from environment
-        import os
+        # Get API credentials from Settings
+        from skillslike.config import get_settings
 
-        api_key = os.getenv("OPENAI_API_KEY")
-        base_url = os.getenv("OPENAI_BASE_URL", "https://api.bltcy.ai")
+        settings = get_settings()
+        api_key = settings.openai_api_key
+        base_url = settings.openai_base_url or "https://api.bltcy.ai"
 
         if not api_key:
-            msg = "API key not found. Set OPENAI_API_KEY environment variable."
+            msg = "API key not found. Set OPENAI_API_KEY in .env file."
             raise RuntimeError(msg)
 
         # Ensure base_url doesn't end with /v1
