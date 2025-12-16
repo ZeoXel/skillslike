@@ -1,0 +1,21 @@
+name: web-search
+description: Search the web for information. Triggers on search, find, lookup, 搜索, 查找, 查询
+inputs:
+  - type: text
+    description: Search query
+outputs:
+  - type: text
+    description: Search results summary
+  - type: json
+    description: Structured search results
+runtime:
+  type: service
+  endpoint: http://localhost:8001/search
+  timeout: 30
+tags:
+  - search
+  - web
+  - information-retrieval
+metadata:
+  version: "1.0.0"
+  rate_limit: 100

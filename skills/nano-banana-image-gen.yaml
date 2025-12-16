@@ -1,0 +1,32 @@
+name: nano-banana-image-gen
+description: Generate images using nano-banana-2 model. Triggers on keywords like draw, image, picture, generate, create, 画, 图片, 生成, 绘制, 创建
+inputs:
+  - type: text
+    description: Image description/prompt in Chinese or English
+  - type: text
+    description: Optional aspect ratio (default 1:1)
+  - type: text
+    description: Optional image size (1K/2K/4K, default 4K)
+outputs:
+  - type: file
+    format: png
+    description: Generated image file
+  - type: text
+    description: Image URL
+runtime:
+  type: service
+  endpoint: https://api.bltcy.ai/v1/images/generations
+  timeout: 60
+  env:
+    MODEL_NAME: nano-banana-2
+    DEFAULT_SIZE: 4K
+    DEFAULT_ASPECT_RATIO: "1:1"
+tags:
+  - image-generation
+  - ai-art
+  - nano-banana
+metadata:
+  version: "1.0.0"
+  provider: bltcy.ai
+  model: nano-banana-2
+  supports_hd: true

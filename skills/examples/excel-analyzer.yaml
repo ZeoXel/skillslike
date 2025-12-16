@@ -1,0 +1,25 @@
+name: excel-analyzer
+description: Analyze Excel spreadsheets and generate insights. Triggers on Excel, spreadsheet, analysis, 表格, 分析, 数据
+inputs:
+  - type: file
+    formats: [xlsx, xls, csv]
+    description: Excel file to analyze
+  - type: text
+    description: Analysis instructions
+outputs:
+  - type: file
+    format: xlsx
+    description: Analysis report
+  - type: text
+    description: Summary of findings
+runtime:
+  type: anthropic
+  skill_id: excel-skill
+  timeout: 180
+tags:
+  - excel
+  - data-analysis
+  - spreadsheet
+metadata:
+  version: "1.0.0"
+  official: true

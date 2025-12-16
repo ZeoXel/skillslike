@@ -1,0 +1,28 @@
+name: knowledge-reorganizer
+description: Reorganize and summarize documents. Triggers on keywords like reorganize, summarize, restructure, 重组, 梳理, 总结
+inputs:
+  - type: file
+    formats: [pdf, docx, txt, md]
+    description: Document to reorganize
+  - type: text
+    description: Reorganization instructions
+outputs:
+  - type: file
+    format: docx
+    description: Reorganized document
+runtime:
+  type: docker
+  image: skillslike/knowledge-reorganizer:latest
+  cmd: ["python", "main.py"]
+  timeout: 300
+  env:
+    LOG_LEVEL: info
+requires:
+  - OPENAI_API_KEY
+tags:
+  - summarization
+  - restructure
+  - document-processing
+metadata:
+  version: "1.0.0"
+  author: SkillsLike Team
