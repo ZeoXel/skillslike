@@ -52,9 +52,7 @@ class RuntimeConfig(BaseModel):
     type: RuntimeType
     image: str | None = Field(default=None, description="Docker image for container runtime")
     cmd: list[str] | None = Field(default=None, description="Command to execute")
-    endpoint: str | None = Field(
-        default=None, description="Service endpoint for service runtime"
-    )
+    endpoint: str | None = Field(default=None, description="Service endpoint for service runtime")
     skill_id: str | None = Field(
         default=None, description="Anthropic skill ID for anthropic runtime"
     )
@@ -70,18 +68,12 @@ class SkillManifest(BaseModel):
     """
 
     name: str = Field(description="Unique skill identifier")
-    description: str = Field(
-        description="Skill description with trigger keywords for routing"
-    )
+    description: str = Field(description="Skill description with trigger keywords for routing")
     inputs: list[InputSpec] = Field(default_factory=list, description="Input specifications")
     outputs: list[OutputSpec] = Field(default_factory=list, description="Output specifications")
     runtime: RuntimeConfig = Field(description="Runtime execution configuration")
-    requires: list[str] = Field(
-        default_factory=list, description="Required secrets or volumes"
-    )
+    requires: list[str] = Field(default_factory=list, description="Required secrets or volumes")
     tags: list[str] = Field(default_factory=list, description="Skill categorization tags")
-    metadata: dict[str, Any] = Field(
-        default_factory=dict, description="Additional metadata"
-    )
+    metadata: dict[str, Any] = Field(default_factory=dict, description="Additional metadata")
 
     model_config = {"use_enum_values": True}

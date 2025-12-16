@@ -3,7 +3,6 @@
 import base64
 import json
 import logging
-from typing import Any
 
 import httpx
 from pydantic import BaseModel, Field
@@ -144,7 +143,7 @@ class ImageGenExecutor(BaseExecutor):
         except httpx.HTTPError as e:
             msg = f"Image generation API call failed: {e}"
             logger.error(msg)
-            if hasattr(e, 'response') and e.response is not None:
+            if hasattr(e, "response") and e.response is not None:
                 logger.error("Response body: %s", e.response.text)
             raise RuntimeError(msg) from e
 

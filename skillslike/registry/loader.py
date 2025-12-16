@@ -37,9 +37,7 @@ class ManifestLoader:
         manifests: list[SkillManifest] = []
 
         # Find all YAML files recursively
-        yaml_files = list(self.skills_dir.rglob("*.yaml")) + list(
-            self.skills_dir.rglob("*.yml")
-        )
+        yaml_files = list(self.skills_dir.rglob("*.yaml")) + list(self.skills_dir.rglob("*.yml"))
 
         if not yaml_files:
             logger.warning("No manifest files found in %s", self.skills_dir)

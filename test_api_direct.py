@@ -37,23 +37,23 @@ try:
     )
 
     print(f"✅ Status code: {response.status_code}")
-    print(f"📄 Response headers:")
+    print("📄 Response headers:")
     for key, value in response.headers.items():
         if key.lower() in ["content-type", "content-length"]:
             print(f"   {key}: {value}")
 
-    print(f"\n📝 Response content (first 500 chars):")
+    print("\n📝 Response content (first 500 chars):")
     print(response.text[:500])
 
     if response.status_code == 200:
         try:
             data = response.json()
-            print(f"\n✨ Success! Parsed JSON:")
+            print("\n✨ Success! Parsed JSON:")
             print(f"   Keys: {list(data.keys())}")
 
             if "data" in data and len(data["data"]) > 0:
                 img_data = data["data"][0]
-                print(f"\n🖼️ Image info:")
+                print("\n🖼️ Image info:")
                 if "url" in img_data:
                     print(f"   URL: {img_data['url'][:80]}...")
                 if "b64_json" in img_data:

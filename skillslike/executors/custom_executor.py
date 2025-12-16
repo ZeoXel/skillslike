@@ -1,6 +1,5 @@
 """Executor for custom skills via Docker/service endpoints."""
 
-import asyncio
 import json
 import logging
 from typing import Any
@@ -48,7 +47,7 @@ class CustomExecutor(BaseExecutor):
                 msg = f"Unsupported runtime type: {runtime_type}"
                 raise RuntimeError(msg)
 
-        except asyncio.TimeoutError as e:
+        except TimeoutError as e:
             msg = f"Skill '{self.manifest.name}' timed out after {self.manifest.runtime.timeout}s"
             logger.error(msg)
             raise TimeoutError(msg) from e

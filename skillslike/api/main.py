@@ -199,7 +199,11 @@ async def download_file(file_id: str) -> StreamingResponse:
     metadata = file_store.get_metadata(file_id)
 
     filename = metadata.get("filename", file_id) if metadata else file_id
-    content_type = metadata.get("content_type", "application/octet-stream") if metadata else "application/octet-stream"
+    content_type = (
+        metadata.get("content_type", "application/octet-stream")
+        if metadata
+        else "application/octet-stream"
+    )
 
     logger.info("Serving file: %s", filename)
 
